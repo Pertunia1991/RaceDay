@@ -1,12 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using System.ComponentModel.DataAnnotations;
 
-namespace RaceDay.Controllers
+namespace RaceDay.API.Models;
+
+public class Enrolment
 {
-    public class EnrolmentsController : Controller
-    {
-        public IActionResult Index()
-        {
-            return View();
-        }
-    }
+    public int EnrolmentID { get; set; }
+
+    public int ParticipantID { get; set; }
+    public int EventID { get; set; }
+    public int CategoryID { get; set; }
+
+    public DateTime EnrolmentDate { get; set; } = DateTime.UtcNow;
+
+    [Required, MaxLength(20)]
+    public string Status { get; set; } = "Confirmed";
+
+    public User? Participant { get; set; }
+    public Event? Event { get; set; }
+    public Category? Category { get; set; }
+
+    public Result? Result { get; set; }
 }
